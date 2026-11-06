@@ -1,0 +1,28 @@
+{
+  "name": "satisfaction-dashboard",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "探探在线团队满意度自动计算",
+  "packageManager": "pnpm@12.5.1",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "type-check": "vue-tsc --noEmit",
+    "preview": "vite preview",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "naive-ui": "^2.45.3",
+    "vue": "^3.5.45"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.10",
+    "code-inspector-plugin": "^2.0.9",
+    "prettier": "^3.9.10",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.6",
+    "vue-tsc": "^3.3.14"
+  }
+}
