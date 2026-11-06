@@ -106,6 +106,22 @@ src/
 | `pnpm format`       | 用 Prettier 格式化全部文件 |
 | `pnpm format:check` | 校验格式，不修改文件       |
 
+## 部署到 GitHub Pages
+
+推送到 `main` 分支会自动触发 [.github/workflows/deploy.yml](.github/workflows/deploy.yml)：
+
+1. 检出代码，用 pnpm 安装依赖（版本取自 `package.json` 的 `packageManager`）
+2. 运行 `pnpm type-check` 与 `pnpm build`
+3. 将 `dist/` 作为 Pages 制品上传并部署
+
+首次使用需在 GitHub 仓库 **Settings → Pages → Build and deployment → Source** 选择 **GitHub Actions**。部署完成后站点地址为：
+
+```text
+https://<用户名>.github.io/csat-dashboard/
+```
+
+构建使用 `base: './'`，资源均为相对路径，可直接在子路径下访问；也可在 Actions 页面手动触发（`workflow_dispatch`）。
+
 ## 注意事项
 
 - 安装依赖时可能看到 `ERR_PNPM_IGNORED_BUILDS`：这是 pnpm 12 拦截依赖构建脚本的安全策略，涉及的可选依赖 `node-pty` 不影响本项目运行
