@@ -6,6 +6,8 @@
       <p class="subtitle">上传数据源 CSV，自动计算满意度并生成可一键复制的统计图</p>
     </header>
 
+    <DailyQuote />
+
     <n-card v-if="!hasResult" class="panel" :bordered="false">
       <div class="upload-zone">
         <n-upload
@@ -65,6 +67,7 @@
   import type { Stats } from '../lib/stats'
   import { describePeriod } from '../lib/format'
   import { renderImage } from '../lib/render'
+  import DailyQuote from '../components/DailyQuote.vue'
 
   const message = useMessage()
   const hasResult = ref(false)

@@ -4,6 +4,7 @@
 
 ## 功能
 
+- 顶部「每日一言」随机诗词横幅（相见拾光开放接口），失败自动回退兜底文案
 - 拖拽上传 CSV，自动识别 UTF-8 / GBK 编码
 - 按固定 6 人名单统计个人数据，并汇总「团队」与「老人」两组
 - 用 Canvas 直接绘制统计表：表头、汇总行、明细行、条件格式
@@ -34,6 +35,14 @@ pnpm preview
 ```
 
 环境建议：Node.js ≥ 20.19，pnpm 12（`packageManager` 已固定为 `pnpm@12.5.1`）。
+
+「每日一言」需在项目根目录创建 `.env.local`（已被 `.gitignore` 忽略），填入相见拾光接口密钥：
+
+```bash
+VITE_HISTORY_API_KEY=你的密钥
+```
+
+未配置密钥时接口请求失败，会自动展示预设兜底文案，不影响其他功能。
 
 ## 数据源要求
 
@@ -83,6 +92,8 @@ CSV 表头必须包含以下列（列名需完全一致）：
 
 ```text
 src/
+├── components/
+│   └── DailyQuote.vue 每日一言随机诗词横幅
 ├── lib/
 │   ├── constants.ts   名单、表头、布局尺寸与配色
 │   ├── csv.ts         CSV 解析、编码识别与字段提取
@@ -113,6 +124,8 @@ src/
 1. 检出代码，用 pnpm 安装依赖（版本取自 `package.json` 的 `packageManager`）
 2. 运行 `pnpm type-check` 与 `pnpm build`
 3. 将 `dist/` 作为 Pages 制品上传并部署
+
+构建时通过仓库 Secret 注入「每日一言」密钥：在 **Settings → Secrets and variables → Actions** 添加 `VITE_HISTORY_API_KEY`；未配置时线上同样回退为兜底文案。
 
 首次使用需在 GitHub 仓库 **Settings → Pages → Build and deployment → Source** 选择 **GitHub Actions**。部署完成后站点地址为：
 

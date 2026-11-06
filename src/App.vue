@@ -19,7 +19,7 @@
       primaryColorSuppl: '#70AD47',
       borderRadius: '9px',
       fontFamily:
-        '"Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "Source Han Sans SC", sans-serif',
+        '"LXGW WenKai", "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "Source Han Sans SC", sans-serif',
     },
   }
 </script>

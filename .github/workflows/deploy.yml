@@ -32,6 +32,9 @@ jobs:
         run: pnpm type-check
       - name: Build
         run: pnpm build # 仅 vite 构建；类型检查已在上一步独立完成，产物在 dist/
+        env:
+          # 每日一言 API 密钥在仓库 Settings → Secrets and variables → Actions 中配置
+          VITE_HISTORY_API_KEY: ${{ secrets.VITE_HISTORY_API_KEY }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:

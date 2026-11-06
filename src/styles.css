@@ -1,3 +1,11 @@
+/* ============ 每日一言字体：霞鹜文楷（自托管全量 woff2，OFL 开源免费商用） ============ */
+@font-face {
+  font-family: 'LXGW WenKai';
+  font-weight: 400;
+  src: url('./assets/fonts/LXGWWenKai-Regular.woff2') format('woff2');
+  font-display: swap;
+}
+
 :root {
   --green: #70ad47;
   --green-dark: #5b9438;
@@ -20,7 +28,8 @@ body {
   min-height: 100vh;
   color: var(--ink);
   font-family:
-    'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', 'Source Han Sans SC', sans-serif;
+    'LXGW WenKai', 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', 'Source Han Sans SC',
+    sans-serif;
   background:
     radial-gradient(900px 420px at 50% -10%, #e9f3e2 0%, rgba(233, 243, 226, 0) 70%),
     linear-gradient(180deg, #f7faf5 0%, #f4f6fa 42%, #f4f6fa 100%);
