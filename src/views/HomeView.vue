@@ -2,7 +2,7 @@
   <main class="page">
     <header class="hero">
       <span class="badge">客服满意度自动统计</span>
-      <h1>探探在线团队满意度</h1>
+      <h1>探探团队在线满意度</h1>
       <p class="subtitle">上传数据源 CSV，自动计算满意度并生成可一键复制的统计图</p>
     </header>
 
@@ -137,7 +137,7 @@
       if (!blob) throw new Error('图片生成失败')
       const link = document.createElement('a')
       link.href = URL.createObjectURL(blob)
-      link.download = '探探在线团队满意度_' + timestamp() + '.png'
+      link.download = '探探团队在线满意度_' + timestamp() + '.png'
       link.click()
       setTimeout(() => URL.revokeObjectURL(link.href), 1000)
     } catch (error) {
