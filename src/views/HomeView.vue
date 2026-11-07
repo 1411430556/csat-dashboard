@@ -1,7 +1,10 @@
 <template>
   <main class="page">
     <header class="hero">
-      <span class="badge">客服满意度自动统计</span>
+      <span class="badge">
+        <i class="badge-dot" aria-hidden="true"></i>
+        客服满意度自动统计
+      </span>
       <h1>探探团队在线满意度</h1>
       <p class="subtitle">上传数据源 CSV，自动计算满意度并生成可一键复制的统计图</p>
     </header>
@@ -17,38 +20,132 @@
           :custom-request="handleUpload"
         >
           <n-upload-dragger class="dropzone">
-            <svg
-              class="dropzone-icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.6"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M12 16V4" />
-              <path d="M7 9l5-5 5 5" />
-              <path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" />
-            </svg>
+            <span class="dropzone-icon-wrap">
+              <svg
+                class="dropzone-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 16V4" />
+                <path d="M7 9l5-5 5 5" />
+                <path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" />
+              </svg>
+            </span>
             <p class="dropzone-title">点击或拖拽 CSV 文件到此处</p>
             <p class="dropzone-tip">自动兼容 UTF-8 / GBK 编码，支持包含引号与换行的标准 CSV</p>
           </n-upload-dragger>
         </n-upload>
+
+        <ul class="feature-chips">
+          <li>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+            自动识别编码
+          </li>
+          <li>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+            计算满意度与推评率
+          </li>
+          <li>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+            一键复制 / 下载统计图
+          </li>
+        </ul>
       </div>
     </n-card>
 
-    <n-card v-else class="panel" :bordered="false">
+    <n-card v-else class="panel result-panel" :bordered="false">
       <template #header>
         <div>
           <h2 class="result-title">计算结果</h2>
-          <p class="meta">{{ metaText }}</p>
+          <div class="meta-chips">
+            <span v-for="(part, index) in metaParts" :key="index" class="meta-chip">{{
+              part
+            }}</span>
+          </div>
         </div>
       </template>
       <template #header-extra>
         <n-space>
-          <n-button quaternary @click="reset">重新上传</n-button>
-          <n-button @click="downloadImage">下载 PNG</n-button>
-          <n-button type="primary" @click="copyImage">复制图片</n-button>
+          <n-button quaternary @click="reset">
+            <template #icon>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 12a9 9 0 1 0 3-6.7" />
+                <path d="M3 4v5h5" />
+              </svg>
+            </template>
+            重新上传
+          </n-button>
+          <n-button @click="downloadImage">
+            <template #icon>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 4v11" />
+                <path d="M7 10l5 5 5-5" />
+                <path d="M4 18v1a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-1" />
+              </svg>
+            </template>
+            下载 PNG
+          </n-button>
+          <n-button type="primary" @click="copyImage">
+            <template #icon>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="9" y="9" width="11" height="11" rx="2" />
+                <path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" />
+              </svg>
+            </template>
+            复制图片
+          </n-button>
         </n-space>
       </template>
       <div class="canvas-wrap">
@@ -71,7 +168,7 @@
 
   const message = useMessage()
   const hasResult = ref(false)
-  const metaText = ref('')
+  const metaParts = ref<string[]>([])
   const stats = ref<Stats | null>(null)
   const canvasRef = ref<HTMLCanvasElement | null>(null)
 
@@ -104,7 +201,7 @@
       if (period) parts.push(period)
       parts.push('编码 ' + decoded.encoding)
 
-      metaText.value = parts.join(' · ')
+      metaParts.value = parts
       hasResult.value = true
       stats.value = computeStats(records)
     } catch (error) {
@@ -148,7 +245,7 @@
   function reset() {
     hasResult.value = false
     stats.value = null
-    metaText.value = ''
+    metaParts.value = []
   }
 
   function canvasToBlob(canvas: HTMLCanvasElement): Promise<Blob | null> {

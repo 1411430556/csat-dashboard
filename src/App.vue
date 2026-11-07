@@ -21,5 +21,10 @@
       fontFamily:
         '"LXGW WenKai", "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "Source Han Sans SC", sans-serif',
     },
+    Button: {
+      borderRadiusMedium: '10px',
+      borderRadiusSmall: '8px',
+      fontWeight: '500',
+    },
   }
 </script>

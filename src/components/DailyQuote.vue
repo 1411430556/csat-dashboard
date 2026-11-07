@@ -71,12 +71,22 @@
     display: flex;
     align-items: center;
     gap: 16px;
-    background: #ffffff;
-    border: 1px solid var(--line);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.94) 0%,
+      rgba(250, 252, 246, 0.86) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.85);
     border-radius: 16px;
-    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
-    padding: 16px 22px;
+    box-shadow:
+      inset 0 1px 0 #ffffff,
+      0 2px 4px rgba(35, 46, 30, 0.04),
+      0 20px 48px rgba(35, 46, 30, 0.09);
+    backdrop-filter: blur(16px) saturate(1.05);
+    -webkit-backdrop-filter: blur(16px) saturate(1.05);
+    padding: 18px 22px;
     overflow: hidden;
+    animation: dq-rise 0.55s 0.1s cubic-bezier(0.22, 0.61, 0.36, 1) both;
   }
 
   .dq-card::after {
@@ -116,7 +126,8 @@
   .dq-text {
     margin: 0;
     font-family: 'LXGW WenKai', 'Kaiti SC', STKaiti, KaiTi, Georgia, serif;
-    font-size: 1.06rem;
+    font-size: 1.1rem;
+    line-height: 1.75;
     color: var(--ink);
     letter-spacing: 0.02em;
   }
@@ -149,6 +160,17 @@
     animation: dq-pulse 1.6s ease-in-out infinite;
   }
 
+  @keyframes dq-rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
   @keyframes dq-pulse {
     0%,
     100% {
@@ -177,6 +199,17 @@
 
   .dq-leave-to {
     opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .dq-card {
+      animation: none;
+    }
+
+    .dq-enter-active,
+    .dq-leave-active {
+      transition: none;
+    }
   }
 
   @media (max-width: 640px) {

@@ -37,14 +37,18 @@ export const LAYOUT = { colWidth: 70, rowHeight: 19, rows: 18, cols: 15, scale: 
 
 export const COLORS = {
   header: '#70AD47',
-  summaryBlue: '#D9E2F3',
-  summaryGreen: '#A8D08D',
-  summarySub: '#E2EFD9',
-  pink: '#FFC7CE',
-  pinkText: '#9C0006',
-  border: '#000000',
-  grid: '#DCDDE5',
-  text: '#000000',
+  headerText: '#FFFFFF',
+  headerLine: 'rgba(255, 255, 255, 0.22)',
+  headerEdge: '#5B9438',
+  zebra: '#F7FAF5',
+  summaryGroup: '#E4EFDB',
+  summaryElder: '#A9CF8F',
+  summarySub: '#F2F8EC',
+  summaryText: '#3C5C2A',
+  pink: '#FDECEE',
+  pinkText: '#B02A2A',
+  border: '#E1E7DE',
+  text: '#2A332B',
 }
 
 // 模板条件格式：满意度 < 70%、参评率/人工推评率 < 30% 时显示浅红填充 + 深红文字
