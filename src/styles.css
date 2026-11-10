@@ -38,13 +38,25 @@ body {
   background-color: #f1ede4;
   background-image:
     /* 内容区柔光，让视线聚焦到中间 */
-    radial-gradient(760px 380px at 50% 2%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 70%),
+    radial-gradient(
+      760px 380px at 50% 2%,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0) 70%
+    ),
     /* 左上翡翠光晕 */
     radial-gradient(1200px 720px at 0% -16%, rgba(58, 112, 40, 0.3) 0%, rgba(58, 112, 40, 0) 62%),
     /* 右上青苔色 */
-    radial-gradient(950px 600px at 102% -4%, rgba(132, 166, 104, 0.26) 0%, rgba(132, 166, 104, 0) 58%),
+    radial-gradient(
+        950px 600px at 102% -4%,
+        rgba(132, 166, 104, 0.26) 0%,
+        rgba(132, 166, 104, 0) 58%
+      ),
     /* 右下香槟金 */
-    radial-gradient(1100px 800px at 72% 120%, rgba(187, 158, 96, 0.22) 0%, rgba(187, 158, 96, 0) 64%),
+    radial-gradient(
+        1100px 800px at 72% 120%,
+        rgba(187, 158, 96, 0.22) 0%,
+        rgba(187, 158, 96, 0) 64%
+      ),
     /* 四角轻微暗角，增加纵深 */
     radial-gradient(150% 150% at 50% 50%, rgba(255, 255, 255, 0) 55%, rgba(44, 58, 36, 0.1) 100%),
     linear-gradient(175deg, #f7f4ec 0%, #f0ece3 50%, #e9e5db 100%);
